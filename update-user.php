@@ -9,6 +9,11 @@
         include "admin-menu.php";
     }
 
+    $dir = "images";
+    if (!file_exists($dir)) {
+        mkdir($dir, 0777);
+    }
+
     $account_id = $_GET['account_id'];
     $user = getUser($account_id);
     $account = getUserAccount($account_id);
@@ -99,7 +104,7 @@
                 <!-- Picture -->
                 <div class="col-4">
                     <div class="col mt-4">
-                        <img src="images/<?= $user['avatar'] ?>" alt="" class="w-100">
+                        <img src="<?= $dir . '/' . $user['avatar'] ?>" alt="" class="w-100">
                         <div class="card mt-1">
                             <input type="file" name="avatar" id="avatar">
                         </div>

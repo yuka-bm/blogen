@@ -153,7 +153,11 @@
             $username = $_POST['username'];
             
             if (null != $avatar) {
-                $destination = "images/$avatar";
+                $dir = "images";
+                if (!file_exists($dir)) {
+                    mkdir($dir, 0777);
+                }
+                $destination = $dir . "/" . $avatar;
                 move_uploaded_file($avatar_tmp, $destination);
             }
             else {
